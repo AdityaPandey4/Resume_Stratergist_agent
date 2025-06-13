@@ -1,0 +1,33 @@
+{
+  "name": "ADITYA PANDEY",
+  "skills": [
+    "AI and Deep Learning",
+    "Generative AI",
+    "Stable Diffusion",
+    "GANs",
+    "Large Language Models",
+    "Retrieval-Augmented Generation (RAG)",
+    "LSTMs",
+    "Agentic AI workflows",
+    "Multi-Agent Systems",
+    "Prompt Engineering",
+    "Software Development",
+    "React",
+    "Django",
+    "Microservices",
+    "Python",
+    "GitHub",
+    "Data Structures",
+    "Apache Kafka"
+  ],
+  "experience": [
+    "Wezenite Technologies Private Limited Deep Learning Intern 15 DECEMBER 2023 - 15 MARCH 2024",
+    "Snive Machine Learning Intern 7 MAY 2023 - 7 AUG 2023"
+  ],
+  "projects": [
+    "ASL Detection",
+    "Waste Management System",
+    "Artificial Intelligence for Crisis Management",
+    "Agri-BOT"
+  ]
+}

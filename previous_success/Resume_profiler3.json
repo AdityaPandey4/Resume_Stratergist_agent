@@ -1,0 +1,33 @@
+{
+  "key_skills": [
+    "Generative AI",
+    "Python",
+    "RAG",
+    "Prompt Engineering",
+    "Large Language Models"
+  ],
+  "missing_keywords": [
+    "Langchain",
+    "LLMs",
+    "Agent-based frameworks",
+    "Machine Learning",
+    "Software Engineering",
+    "SQL",
+    "AWS",
+    "Azure",
+    "GCP",
+    "MLOps",
+    "Vector databases",
+    "Embeddings",
+    "Cloud platforms",
+    "ML/AI product pipelines",
+    "End-to-end deployments",
+    "System-level thinking",
+    "Stakeholder management",
+    "Client-facing projects",
+    "Cross-functional AI teams"
+  ],
+  "Actionable_Suggestions": [
+    "1. Emphasize experience with Large Language Models (LLMs) and Generative AI projects in the resume's 'Projects' section, explicitly mentioning the use of Python and RAG where applicable. For example, describe how 'ASL Detection' or 'Waste Management System' leveraged LLMs for specific tasks.  Quantify achievements whenever possible (e.g., 'Improved accuracy by 15% using RAG').\n2. Highlight the software development skills (React, Django, Microservices) by creating a separate 'Technical Skills' section. This section should list Python, along with other relevant tools and libraries (even if not explicitly mentioned in the job description).  Add Langchain here as a skill to learn, and mention familiarity with other relevant libraries (if applicable).\n3.  Address the experience gap. Since the job posting requires 5-8 years of experience, and the candidate has internship experience, highlight transferable skills and the rapid learning curve demonstrated in various projects. Focus on the impact of projects (problem solved, results achieved).  Reframe experience to emphasize practical application of relevant concepts. For example, instead of just listing \"Deep Learning Intern,\" describe specific accomplishments using keywords like 'LLM', 'GenAI', and 'prompt engineering' whenever possible.  Quantify achievements, even in the context of internships.\n4.  Add a section dedicated to projects showing application of skills and technologies closely related to the job posting's requirements. This can be done by reframing existing projects to highlight their relevance.  If the projects do not directly address all the requirements, mention future learning plans related to the missing keywords (e.g., 'Currently learning Langchain and exploring cloud platforms such as AWS'). This demonstrates a proactive approach and a commitment to skill development."
+  ]
+}

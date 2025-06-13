@@ -1,0 +1,13 @@
+{
+  "Link": "https://in.linkedin.com/jobs/view/python-lead-with-generative-ai-engineer-at-zensar-technologies-4245670085",
+  "Description": "ZENSAR - OPPORTUNITY FOR “Gen AI with Python Engineer” Apply Here: - https://forms.office.com/r/nVP0Mg5eeE Dear Aspirant, Greetings from Zensar!! We are thrilled to offer you an excellent opportunity to join our team as a Gen AI with Python Engineer professional . Experience Required: 7 - 10 Years Location: Pune, Bangalore, Hyderabad (Hybrid) LLM Applications & Agentic Frameworks Design and implement end-to-end LLM applications using OpenAI, Claude, Mistral, Gemini, or LLaMA on AWS, Databricks, Azure or GCP. Build intelligent, autonomous agents using LangGraph, AutoGen, LlamaIndex, Crew.ai, or custom frameworks. Develop Multi Model, Multi Agent, Retrieval-Augmented Generation (RAG) applications with secure context embedding and tracing with reports. Rapidly explore and showcase the art of the possible through functional, demonstrable POCs Advanced AI Experimentation Fine-tune LLMs and Small Language Models (SLMs) for domain-specific use. Create and leverage synthetic datasets to simulate edge cases and scale training. Evaluate agents using custom agent evaluation frameworks (success rates, latency, reliability) Evaluate emerging agent communication standards — A2A (Agent-to-Agent) and MCP (Model Context Protocol) Business Alignment & Cross-Team Collaboration Translate ambiguous requirements into structured, AI-enabled solutions. Clearly communicate and present ideas, outcomes, and system behaviors to technical and non-technical stakeholders Good-To-Have Microsoft Copilot Studio DevRev Codium Cursor Atlassian AI Databricks Mosaic AI Qualifications 7- 10 years of experience in software development or AI/ML engineering At least 3 years working with LLMs, GenAI applications, or agentic frameworks. Proficient in AI/ML, MLOps concepts, Python, embeddings, prompt engineering, and model orchestration Proven track record of developing functional AI prototypes beyond notebooks. Strong presentation and storytelling skills to clearly convey GenAI concepts and value. Ability to independently drive AI experiments from ideation to working demo.",
+  "relevancy": "This job posting is highly relevant because it explicitly mentions several key skills possessed by the user, including  LLMs, Generative AI, RAG, Python, and experience with agentic frameworks. The required experience aligns well with the user's internship experience.",
+  "key_skills": [
+    "LLMs",
+    "Generative AI",
+    "RAG",
+    "Python",
+    "Agentic AI workflows",
+    "Prompt Engineering"
+  ]
+}

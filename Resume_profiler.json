@@ -1,0 +1,51 @@
+{
+  "key_skills": [
+    "LLMs",
+    "RAG",
+    "Python",
+    "Generative AI",
+    "Agentic AI workflows",
+    "Prompt Engineering"
+  ],
+  "missing_keywords": [
+    "MLOps",
+    "embeddings",
+    "model orchestration",
+    "OpenAI",
+    "Claude",
+    "Mistral",
+    "Gemini",
+    "LLaMA",
+    "AWS",
+    "Databricks",
+    "Azure",
+    "GCP",
+    "LangGraph",
+    "AutoGen",
+    "LlamaIndex",
+    "Crew.ai",
+    "A2A",
+    "MCP",
+    "Microsoft Copilot Studio",
+    "DevRev",
+    "Codium",
+    "Cursor",
+    "Atlassian AI",
+    "Databricks Mosaic AI",
+    "Small Language Models (SLMs)",
+    "synthetic datasets",
+    "agent evaluation frameworks"
+  ],
+  "Actionable_Suggestions": [
+    "Quantify accomplishments in each role.  Instead of 'Led a team of interns...', try 'Led a team of 5 interns, resulting in a 15% improvement in LLM performance.'  Use metrics whenever possible.",
+    "Highlight experience with specific LLM platforms (OpenAI, etc.). If experience exists with similar platforms, rephrase to emphasize those similarities.  For instance, if experience with a different cloud platform is present, emphasize transferable skills: \"Experienced in deploying models on [Cloud Platform X]; readily adaptable to AWS, Azure, or GCP.\"",
+    "Showcase proficiency in 'embeddings' and 'model orchestration' by adding details to project descriptions, emphasizing the processes involved in your projects. For example: \"Utilized word embeddings to improve semantic search capabilities within the RAG architecture.\" or \"Orchestrated multiple models using [Specific method] to achieve efficient workflow.\"",
+    "Add a dedicated section on 'MLOps' if applicable, explaining any involvement in model deployment, monitoring, or maintenance, even if it was a small part of previous projects.  Example: \"Contributed to the CI/CD pipeline for LLM deployment, improving deployment speed by 10%.\"",
+    "Explicitly mention any experience with frameworks like LangGraph, AutoGen, etc., even if indirectly relevant.  If you used similar frameworks, highlight the transferable skills and the parallels. Example: \"Developed custom agent frameworks similar in concept to LangGraph, enabling efficient multi-agent communication.\"",
+    "Incorporate keywords from the 'missing_keywords' list into project descriptions and skills section where appropriate, even if it requires rewording to highlight similar skills or experiences.  Focus on transferable skills.",
+    "Add a section detailing experience with 'synthetic datasets', even if it involved creating a smaller subset of data or similar tasks, if this is possible given your experience.",
+    "Revise the resume to include relevant details in project descriptions. For example, 'Used Python and LLMs to create a chatbot that improved customer satisfaction by 15%.'",
+    "If you have experience with any of the listed tools like 'Microsoft Copilot Studio', 'DevRev', etc., even if limited, include them in your skills section.",
+    "Highlight experience with evaluating models, even if the methods were not exactly the same as specified.   Example: \"Developed and utilized custom metrics to assess LLM performance, focusing on factors like accuracy, latency, and hallucination rates.\""
+  ]
+}

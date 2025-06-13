@@ -1,0 +1,40 @@
+{
+  "key_skills": [
+    "Generative AI",
+    "Large Language Models",
+    "Agentic AI workflows",
+    "Prompt Engineering",
+    "Python"
+  ],
+  "missing_keywords": [
+    "LLM Applications",
+    "Multi-Agent Systems",
+    "Retrieval-Augmented Generation (RAG)",
+    "Model Orchestration",
+    "MLOps",
+    "Embeddings",
+    "OpenAI",
+    "Claude",
+    "Mistral",
+    "Gemini",
+    "LLaMA",
+    "AWS",
+    "Databricks",
+    "Azure",
+    "GCP",
+    "LangGraph",
+    "AutoGen",
+    "LlamaIndex",
+    "Crew.ai",
+    "A2A",
+    "MCP",
+    "Fine-tuning LLMs",
+    "Synthetic datasets",
+    "Agent evaluation frameworks",
+    "Software development experience (7-10 years)",
+    "Functional AI prototypes"
+  ],
+  "Actionable_Suggestions": [
+    "1. **Quantify achievements:** Instead of simply listing projects, quantify achievements within each project using metrics. For example, 'Developed ASL Detection model achieving 95% accuracy.'  This showcases tangible results and aligns with the job's emphasis on functional prototypes. \n2. **Highlight relevant experience:** Reframe internship experiences to emphasize skills relevant to the job description. For example, highlight experiences related to LLM application development, even if not explicitly stated, by focusing on tasks involving prompt engineering, model evaluation, and data handling.  Use keywords from the job description (like 'LLMs', 'Agentic AI', and 'Prompt Engineering') where applicable. \n3. **Showcase framework familiarity:**  Even if the resume doesn't list specific frameworks like LangChain, AutoGen, or LlamaIndex,  mention familiarity with similar concepts and tools used in projects.  For example, if a project involved creating a multi-agent system, describe the underlying architecture and how it achieved agent collaboration.  This demonstrates transferable skills. \n4. **Address the experience gap:** The job posting requires 7-10 years of experience.  While the candidate lacks this, they can highlight the depth of their knowledge and fast learning capabilities within a shorter time frame by focusing on the impact of their projects and demonstrably quantifiable accomplishments.  Emphasize transferable skills from software development and their eagerness to quickly learn and apply new technologies."
+  ]
+}
