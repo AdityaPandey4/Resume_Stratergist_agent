@@ -1,0 +1,41 @@
+{
+  "key_skills": [
+    "Generative AI",
+    "LLMs",
+    "RAG architectures",
+    "Python",
+    "Prompt Engineering",
+    "Agentic AI workflows"
+  ],
+  "missing_keywords": [
+    "LangChain",
+    "LlamaIndex",
+    "Azure OpenAI",
+    "AWS Bedrock",
+    "vector databases",
+    "embedding models",
+    "semantic search technologies",
+    "DevOps/MLOps",
+    "CI/CD",
+    "Jenkins",
+    "Docker",
+    "Kubernetes",
+    "Azure",
+    "AWS",
+    "data pipelines",
+    "API management",
+    "Data Science",
+    "Project Management",
+    "Stakeholder Collaboration"
+  ],
+  "Actionable_Suggestions": [
+    "**Strengthen Generative AI Expertise:** Explicitly highlight experience with specific Generative AI models (e.g., GPT, Claude, LLaMA) and frameworks (mentioning familiarity even if not extensively used would be beneficial).  Rework project descriptions to emphasize the generative AI aspects. For example, instead of simply stating \"Developed an end-to-end system\", describe how LLMs and RAG were used to achieve specific generative outputs or functionalities.",
+    "**Showcase LLM and RAG Proficiency:**  Expand on the description of the \"Artificial Intelligence for Crisis Management\" project. Quantify achievements (e.g., improved response time by X%, increased accuracy by Y%).  Clearly demonstrate understanding of RAG components like retrieval and generation, emphasizing specific techniques used.",
+    "**Highlight Python and Related Skills:** The resume already mentions Python, but emphasize its usage in Generative AI projects. Add details about libraries and frameworks used (even if basic).",
+    "**Address Missing Keywords:** While the resume doesn't list the specific technologies mentioned in the job description (e.g., LangChain, LlamaIndex, cloud platforms), strategically incorporate related experiences.  For example, if experience with other similar tools exists, frame the skills in a way that emphasizes transferability (e.g., \"Experience with [similar tool] demonstrates proficiency in building and deploying AI applications.\").",
+    "**Emphasize Project Management and Stakeholder Collaboration:** Add quantifiable achievements to project descriptions to showcase project management skills (e.g., \"Successfully managed a team of X to deliver the project under budget and ahead of schedule.\").  Include details about interacting with stakeholders and gathering requirements in the project descriptions.",
+    "**Add a Dedicated Skills Section:** Create a dedicated section listing relevant keywords, even if experience is limited, to improve search engine optimization and keyword matching.",
+    "**Quantify Achievements:**  Use numbers to demonstrate impact wherever possible (e.g., \"Improved efficiency by 15%\", \"Reduced costs by 10%\"). This will make the resume more impressive and easier for recruiters to understand.",
+    "**Tailor the Resume to the Job Description:**  Directly address the requirements in the job description using the language used in the posting.  This will make it easier for recruiters to see how your skills and experience directly align with the needs of the role."
+  ]
+}

@@ -58,7 +58,7 @@ class workexperience(BaseModel):
 class Projects(BaseModel):
     Name:str = Field(description="Name of the Project")
     description:str = Field(description="Bulleted points details about the project")
-    Technologies_used : str = Field(description="list of technologies used in the project")
+    Technologies_used : list[str] = Field(description="list of technologies used in the project")
 class Resume_analyst_json(BaseModel):
     name: str
     skills: list[str]
@@ -140,14 +140,40 @@ Resume_profiler = Agent(
 
 )
 
+# Resume Builder 
+Resume_builder = Agent(
+    role = "Expert Resume Builder",
+    goal = "Based on user original Resume and the Resume_profiler suggestion build a professional and strong resume",
+    backstory = (
+        "You are a expert Resume builder and have great eye for details and make a resume such that it stands out for the job postings"
+        "analyse the users's original resume contents provided by Resume_analyst Agent and the gaps provided by the Resume_profiler agent"
+        "use the 'Key_skills' section provided by the Resume_profiler Agent that gives the skills that are common in both users resume and job posting "
+        "and emphasize more on these skills while creating a new resume."
+        "take suggestion from 'Actionable_suggestion' section from Resume_profiler to add to the new resume"
+        "Provide the final output in a markdown file with proper structuring of the new Resume which should be highly professional"
+        "provide suggestion in '[]' brackets for the user to further enhance its resume"
+        "DO NOT create any new information on your own"
+        "To get more information to populate the resume use pdf_search_tool and pass two arguments"
+        "the two arguments are {file_path} for the file path of the resume "
+        "and your query for the 'query' arguement"
+    ),
+    llm = llm,
+    max_iter = 5,
+    max_rpm = 3,
+    tools = [pdf_search_tool]
+
+)
+
 
 # --- Task Definitions ---
 
 Resume_analyst_Task = Task(
     description=(
         "Analyze the user's resume located at '{file_path}'. "
-        # --- CHANGE 3: More specific instructions to guide the agent's querying process ---
-        "Your goal is to create a complete JSON profile of the candidate. "
+        # --- CHANGE 3: Add forceful, non-negotiable instructions ---
+        "Your mission is to act as a data extractor ONLY. **You are strictly forbidden from inventing, hallucinating, or using any prior knowledge.** "
+        "Your ONLY source of information is the document provided at '{file_path}'.\n\n"
+        "You MUST use the `pdf_search_tool` to find every piece of information. "
         "To do this, use the `pdf_search_tool` multiple times with specific, targeted queries. "
         "First, query for the candidate's name. "
         "Second, query for a comprehensive list of all their skills. "
@@ -207,11 +233,27 @@ Resume_profiler_task = Task(
     output_file = 'Resume_profiler.json'
 
 )
+Resume_builder_task = Task(
+    description = (
+        "Using the information provided by the Resume_analyst about the Name, key skills, work experience and projects"
+        "and information provided by the Resume_profiler about Gaps and Actionable_suggestion to strengthen the user's original resume"
+        "build a new resume that can make the user stand out and best suited for the job posting"
+        "use only the information provided by the Resume_analyst and Resume_profiler to build the new Resume"
+        "DO NOT create any new information "
+    ),
+    expected_output =(
+        "Well structured and professional new Resume in a markdown file"
+        "Only using the user's original resume information and information provided by Resume_analyst and Resume_profiler "
+        "Further improvement suggestion in []"
+    ),
+    agent = Resume_builder,
+    output_file = 'New_resume.md'
+)
 
 # --- Crew Definition ---
 job_search_crew = Crew(
-    agents=[Resume_analyst, Job_researcher, Resume_profiler],
-    tasks=[Resume_analyst_Task, Job_researcher_Task, Resume_profiler_task],
+    agents=[Resume_analyst, Job_researcher, Resume_profiler, Resume_builder],
+    tasks=[Resume_analyst_Task, Job_researcher_Task, Resume_profiler_task,Resume_builder_task],
     process=Process.sequential,
     verbose=True
 )

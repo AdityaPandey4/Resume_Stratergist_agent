@@ -1,0 +1,64 @@
+{
+  "name": "ADITYA PANDEY",
+  "skills": [
+    "AI and Deep Learning",
+    "Generative AI",
+    "Stable Diffusion",
+    "GANs",
+    "Large Language Models",
+    "Retrieval-Augmented Generation (RAG)",
+    "LSTMs",
+    "Agentic AI workflows",
+    "Multi-Agent Systems",
+    "Prompt Engineering",
+    "Software Development",
+    "React",
+    "Django",
+    "Microservices",
+    "Python",
+    "GitHub",
+    "Data Structures",
+    "Apache Kafka"
+  ],
+  "experience": [
+    {
+      "role": "Deep Learning Intern",
+      "company": "Wezenite Technologies Private Limited",
+      "dates": "15 DECEMBER 2023 - 15 MARCH 2024",
+      "description": "Gained hands-on experience managing large-scale models on Hugging Face and version control using Git/GitHub."
+    },
+    {
+      "role": "Machine Learning Intern",
+      "company": "Snive",
+      "dates": "7 MAY 2023 - 7 AUG 2023",
+      "description": ""
+    }
+  ],
+  "projects": [
+    {
+      "Name": "ASL Detection",
+      "description": "Developed a system that leverages Convolution Neural Network to interpret America sign Language",
+      "Technologies_used": []
+    },
+    {
+      "Name": "Waste Management System",
+      "description": "Designed smart bins for waste segregation and future prediction using time series forecasting.",
+      "Technologies_used": []
+    },
+    {
+      "Name": "Artificial Intelligence for Crisis Management",
+      "description": "Developed an end-to-end system which can help quick response team and general public during a natural disaster which utilizes LLMs and RAG architecture.",
+      "Technologies_used": [
+        "LLMs",
+        "RAG architecture"
+      ]
+    },
+    {
+      "Name": "Agri-BOT",
+      "description": "Engineered an IoT-enabled rover for vertical farming with automated climate and growth monitoring.",
+      "Technologies_used": [
+        "IoT"
+      ]
+    }
+  ]
+}
