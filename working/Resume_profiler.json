@@ -1,41 +1,39 @@
 {
   "key_skills": [
+    "AI",
     "Generative AI",
-    "LLMs",
-    "RAG architectures",
+    "Machine Learning",
     "Python",
-    "Prompt Engineering",
-    "Agentic AI workflows"
+    "Apache Kafka"
   ],
   "missing_keywords": [
-    "LangChain",
-    "LlamaIndex",
-    "Azure OpenAI",
-    "AWS Bedrock",
-    "vector databases",
-    "embedding models",
-    "semantic search technologies",
-    "DevOps/MLOps",
-    "CI/CD",
-    "Jenkins",
+    "Java",
+    "REST API",
+    "TensorFlow",
+    "PyTorch",
+    "scikit-learn",
+    "Spark",
+    "Hadoop",
+    "SQL",
+    "NoSQL",
+    "AWS",
+    "GCP",
+    "Azure",
     "Docker",
     "Kubernetes",
-    "Azure",
-    "AWS",
-    "data pipelines",
-    "API management",
-    "Data Science",
-    "Project Management",
-    "Stakeholder Collaboration"
+    "Data Engineering",
+    "Data Pipelines",
+    "Model Deployment",
+    "API Integrations"
   ],
   "Actionable_Suggestions": [
-    "**Strengthen Generative AI Expertise:** Explicitly highlight experience with specific Generative AI models (e.g., GPT, Claude, LLaMA) and frameworks (mentioning familiarity even if not extensively used would be beneficial).  Rework project descriptions to emphasize the generative AI aspects. For example, instead of simply stating \"Developed an end-to-end system\", describe how LLMs and RAG were used to achieve specific generative outputs or functionalities.",
-    "**Showcase LLM and RAG Proficiency:**  Expand on the description of the \"Artificial Intelligence for Crisis Management\" project. Quantify achievements (e.g., improved response time by X%, increased accuracy by Y%).  Clearly demonstrate understanding of RAG components like retrieval and generation, emphasizing specific techniques used.",
-    "**Highlight Python and Related Skills:** The resume already mentions Python, but emphasize its usage in Generative AI projects. Add details about libraries and frameworks used (even if basic).",
-    "**Address Missing Keywords:** While the resume doesn't list the specific technologies mentioned in the job description (e.g., LangChain, LlamaIndex, cloud platforms), strategically incorporate related experiences.  For example, if experience with other similar tools exists, frame the skills in a way that emphasizes transferability (e.g., \"Experience with [similar tool] demonstrates proficiency in building and deploying AI applications.\").",
-    "**Emphasize Project Management and Stakeholder Collaboration:** Add quantifiable achievements to project descriptions to showcase project management skills (e.g., \"Successfully managed a team of X to deliver the project under budget and ahead of schedule.\").  Include details about interacting with stakeholders and gathering requirements in the project descriptions.",
-    "**Add a Dedicated Skills Section:** Create a dedicated section listing relevant keywords, even if experience is limited, to improve search engine optimization and keyword matching.",
-    "**Quantify Achievements:**  Use numbers to demonstrate impact wherever possible (e.g., \"Improved efficiency by 15%\", \"Reduced costs by 10%\"). This will make the resume more impressive and easier for recruiters to understand.",
-    "**Tailor the Resume to the Job Description:**  Directly address the requirements in the job description using the language used in the posting.  This will make it easier for recruiters to see how your skills and experience directly align with the needs of the role."
+    "**Highlight Generative AI Expertise:**  Explicitly mention projects and experiences related to Generative AI models within the experience and projects sections. Quantify achievements whenever possible (e.g., 'Improved model accuracy by 15% using Generative AI techniques').",
+    "**Showcase Python Proficiency:** Expand on the Python skills section by detailing specific libraries and frameworks used (e.g., 'Proficient in Python (NumPy, Pandas, Scikit-learn)').  Mention any significant projects where Python played a crucial role.",
+    "**Address Java Gap:** Since Java is a key requirement, consider adding a section dedicated to learning Java. Even brief mention of online courses or personal projects aiming to gain proficiency in Java can be impressive.",
+    "**Emphasize Data Handling Skills:** The resume lacks explicit mention of data engineering skills.  Rephrase project descriptions to highlight data preprocessing, feature engineering, and model training aspects.  Mention any experience with data pipelines even if not explicitly named as such (e.g., 'Developed and maintained data pipelines for efficient model training').",
+    "**Integrate Relevant Keywords:** Incorporate the missing keywords naturally within the resume, ensuring they are not just added but truly reflect the candidate's abilities and experience.  For example, mention familiarity with cloud platforms even if experience is limited to exploring or using free tiers.",
+    "**Quantify Achievements:** Add quantifiable results to project descriptions (e.g., 'Reduced processing time by 20% using Apache Kafka'). This demonstrates impact and strengthens the resume.",
+    "**Expand Project Descriptions:** The project descriptions are concise. Expand them to highlight the technical skills used and the challenges overcome.  For instance, detail the specific type of Convolutional Neural Network used in the ASL Detection project.  Mention the specific time series forecasting methods employed in the Waste Management System.",
+    "**Tailor to the Job Description:** Reorganize the resume to directly address the key responsibilities outlined in the job description. The resume should flow logically from the required skills to the candidate's achievements."
   ]
 }

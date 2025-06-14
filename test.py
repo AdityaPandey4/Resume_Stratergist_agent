@@ -22,7 +22,10 @@ os.environ["GOOGLE_API_KEY"] = "AIzaSyBZkUWjOzIYlQbDPvgjyDzmsadHKqt1HhQ"
 
 # --- LLM Setup ---
 # Using gemini-1.5-flash is a great choice for speed and capability.
-llm = LLM(model="gemini/gemini-1.5-flash")
+llm = LLM(
+    # model="gemini/gemini-1.5-flash"
+    model="gemini/gemini-2.0-flash"
+)
 
 
 # --- Tool Definitions ---
@@ -81,7 +84,7 @@ class Resume_profiler_json(BaseModel):
 # Resume_analyst Agent
 Resume_analyst = Agent(
     role="Senior Resume Analyst",
-    goal="Meticulously extract key details like name, skills, work experience, and projects from a user's resume.",
+    goal="Meticulously extract key details like name, skills, work experience, and projects from a user's resume using the 'pdf_search_tool.",
     backstory=(
         "You are a senior Resume Analyst with exceptional attention to detail. "
         "Your expertise lies in parsing PDF resumes to extract structured information. "
@@ -164,6 +167,23 @@ Resume_builder = Agent(
 
 )
 
+#Report Agent 
+Report_agent = Agent(
+    role = "Report Writing Expert",
+    goal = "Provide a Side by side comparison report of what were the Actionable suggestions by Resume_Profiler and the Changes in the resume that Reflects those changes implemented in a table",
+    backstory = (
+        "You are an expert in generating detailed and well structured reports while detailing out comparisons in a table"
+        "Carefully analyse the information provided by the Resume_profiler agent specifically 'Actionable_suggestion' and"
+        "and the result of the Resume_builder agent which created a New_resume for the user"
+        "compare the contents of the New_resume with the Actionable Suggestions and provide a detailed summary how the actionable suggestions is "
+        "successfully implemented in the New_resume"
+    ),
+    llm = llm,
+    max_iter = 3,
+    max_rpm = 3
+
+)
+
 
 # --- Task Definitions ---
 
@@ -234,26 +254,64 @@ Resume_profiler_task = Task(
 
 )
 Resume_builder_task = Task(
-    description = (
-        "Using the information provided by the Resume_analyst about the Name, key skills, work experience and projects"
-        "and information provided by the Resume_profiler about Gaps and Actionable_suggestion to strengthen the user's original resume"
-        "build a new resume that can make the user stand out and best suited for the job posting"
-        "use only the information provided by the Resume_analyst and Resume_profiler to build the new Resume"
-        "DO NOT create any new information "
+    description=(
+        "Your final and most important mission is to **rewrite and enhance** the user's original resume to be perfectly tailored for the target job. "
+        "You will receive three crucial pieces of information:\n"
+        "1. The full, detailed original resume content from the `Resume_analyst` (including all bullet-point descriptions for each job and project).\n"
+        "2. The specific job posting details from the `Job_researcher`.\n"
+        "3. A list of actionable suggestions and keywords from the `Resume_profiler`.\n\n"
+        
+        "**Your Process MUST be as follows:**\n"
+        "1. **Start with the original resume content.** Do NOT start from a blank page. Go through the original resume section by section (Summary, Experience, Projects).\n"
+        "2. **For each bullet point in the original 'Experience' and 'Projects' sections, rewrite it.** Your goal is to incorporate the 'Actionable_Suggestions' and 'missing_keywords' from the `Resume_profiler`'s report. Rephrase the original points to highlight the skills and achievements most relevant to the target job description.\n"
+        "3. **Enhance the 'Skills' section.** Ensure the 'key_skills' identified by the profiler are prominently featured.\n"
+        "4. **Craft a new, powerful 'Summary' section.** This summary should be a concise pitch directly targeting the job, using keywords from the job description and highlighting the user's most relevant qualifications.\n"
+        "5. **Preserve all original facts.** You must not change company names, dates, or the core truth of the user's work. You are only enhancing the *description* of that work.\n\n"
+        "The final output must be a complete, professional resume in Markdown format, filled with detailed, rewritten descriptions. It should not be a template but a ready-to-use document."
     ),
-    expected_output =(
-        "Well structured and professional new Resume in a markdown file"
-        "Only using the user's original resume information and information provided by Resume_analyst and Resume_profiler "
-        "Further improvement suggestion in []"
+    expected_output=(
+        "A complete, professionally formatted, and fully detailed resume in a single markdown file. "
+        "This resume should be a rewritten version of the original, enhanced with keywords and suggestions to align perfectly with the target job. "
+        "It must include fully populated 'Experience' and 'Projects' sections with detailed, rewritten bullet points."
     ),
-    agent = Resume_builder,
-    output_file = 'New_resume.md'
+    agent=Resume_builder,
+    # --- CHANGE: Make sure builder has access to all prior context ---
+    context=[Resume_analyst_Task, Job_researcher_Task, Resume_profiler_task],
+    output_file='New_resume.md'
+)
+
+Report_agent_task = Task(
+    description=(
+        "Your main task is to create a detailed audit report in a perfect markdown table. You will compare the 'Actionable_Suggestions' from the `Resume_profiler` against the final `New_resume.md`.\n\n"
+        "**Process:**\n"
+        "1. For each suggestion from the profiler, find concrete evidence of its implementation in the new resume.\n"
+        "2. Construct a Markdown table with your findings.\n\n"
+        
+        "**CRITICAL FORMATTING RULES:**\n"
+        "1. The final output MUST be ONLY a Markdown table. Do NOT add any introductory text, concluding summaries, or explanations before or after the table.\n"
+        "2. Do NOT wrap the table in markdown code fences (i.e., no ```markdown ... ```).\n"
+        "3. Follow the example syntax below with extreme precision, including the pipes `|` and header separators `|---|`.\n\n"
+
+        "**EXAMPLE OF PERFECT SYNTAX:**\n\n"
+        "| Profiler Suggestion | How it was implemented - Evidence |\n"
+        "|---------------------|-----------------------------------|\n"
+        "| This is the first suggestion from the profiler. | **SUCCESSFUL:** The new resume implemented this by adding a 'New Section' and including the keywords 'X' and 'Y' in the summary. |\n"
+        "| This is the second suggestion from the profiler. | **SUCCESSFUL:** This suggestion was addressed in the 'Experience' section where the bullet point was rewritten to include quantifiable metrics like 'improved by 25%'. |\n"
+    ),
+    expected_output=(
+        "A single, clean markdown file containing ONLY a perfectly formatted Markdown table. "
+        "The table must have two columns: 'Profiler Suggestion' and 'How it was implemented - Evidence'. "
+        "The file must not contain any other text, titles, or code fences."
+    ),
+    agent=Report_agent,
+    context=[Resume_profiler_task, Resume_builder_task],
+    output_file="Review.md"
 )
 
 # --- Crew Definition ---
 job_search_crew = Crew(
-    agents=[Resume_analyst, Job_researcher, Resume_profiler, Resume_builder],
-    tasks=[Resume_analyst_Task, Job_researcher_Task, Resume_profiler_task,Resume_builder_task],
+    agents=[Resume_analyst, Job_researcher, Resume_profiler, Resume_builder, Report_agent],
+    tasks=[Resume_analyst_Task, Job_researcher_Task, Resume_profiler_task,Resume_builder_task, Report_agent_task],
     process=Process.sequential,
     verbose=True
 )

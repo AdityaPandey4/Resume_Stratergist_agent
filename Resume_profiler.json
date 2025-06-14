@@ -1,0 +1,23 @@
+{
+  "key_skills": [
+    "Large Language Models",
+    "Retrieval Augmented Generation (RAG)",
+    "Python"
+  ],
+  "missing_keywords": [
+    "GPT",
+    "Gemini",
+    "Vector DB",
+    "Lang Chain",
+    "LLAMA Index",
+    "GenAI"
+  ],
+  "Actionable_Suggestions": [
+    "In the 'Deep Learning Intern' role at Wezenite Technologies Private Limited, explicitly mention your experience with specific LLMs like GPT or Gemini, if applicable. Even if you haven't directly worked with these specific models, highlight your experience with similar models and your ability to quickly learn and adapt to new LLMs.",
+    "In the 'Deep Learning Intern' role description at Wezenite Technologies Private Limited, emphasize the implementation of RAG architecture to improve contextual relevance. Quantify the improvements achieved through RAG implementation, if possible.",
+    "Although your resume mentions 'AI Agentic Workflow', it's beneficial to add 'GenAI' to your skills section to directly align with the job posting. This would ensure that it is not missed by the ATS.",
+    "In the 'Artificial Intelligence for Crisis Management' project description, explicitly mention the specific LLMs and RAG framework you utilized. If you used something very similar to Langchain or LlamaIndex, phrase it to highlight the comparable functionalities and your experience with those. For example: 'Developed an end-to-end system which can help quick response team and general public during a natural disaster which utilizes LLMs (similar to OpenAI models) and a RAG architecture (comparable to Langchain for information retrieval).'",
+    "Even though you may not have direct experience with Vector DB, you can still enhance your resume. Include a brief mention of your familiarity with vector embeddings and similarity searches in the context of RAG or LLM applications. For example, within your project descriptions or skills section, add a phrase like: 'Experience with vector embeddings and similarity search techniques for enhancing information retrieval in RAG systems'.",
+    "In your skills section, consider adding a separate entry for 'Prompt Engineering', as it is a valuable skill for optimizing LLM performance."
+  ]
+}

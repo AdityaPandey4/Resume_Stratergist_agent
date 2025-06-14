@@ -1,17 +1,12 @@
 {
   "name": "ADITYA PANDEY",
   "skills": [
-    "AI",
-    "Deep Learning",
-    "Machine Learning",
-    "Generative AI",
-    "Stable Diffusion",
-    "GANs",
+    "AI Agentic Workflow",
     "Large Language Models",
-    "Retrieval-Augmented Generation (RAG)",
-    "LSTMs",
-    "Agentic AI workflows",
-    "Multi-Agent Systems",
+    "LSTM",
+    "Retrieval Augmented Generation (RAG)",
+    "Generative Adversarial Networks (GANs)",
+    "Stable Diffusion",
     "Prompt Engineering",
     "Software Development",
     "React",
@@ -19,7 +14,7 @@
     "Microservices",
     "Python",
     "GitHub",
-    "Data Structures",
+    "Data Strucures",
     "Apache Kafka"
   ],
   "experience": [
@@ -27,44 +22,35 @@
       "role": "Deep Learning Intern",
       "company": "Wezenite Technologies Private Limited",
       "dates": "15 DECEMBER 2023 - 15 MARCH 2024",
-      "description": ""
+      "description": "Led a team of interns in developing and deploying Large Language Models (LLMs) applications. Worked on training and testing LLMs to optimize performance for real-world applications. Implemented Retrieval-Augmented Generation (RAG) architecture to enhance contextual relevance. Applied prompt engineering techniques to minimize hallucinations and ensure stable outputs. Built a Streamlit-based frontend to enable seamless interaction with the deployed models."
     },
     {
       "role": "Machine Learning Intern",
       "company": "Snive",
       "dates": "7 MAY 2023 - 7 AUG 2023",
-      "description": ""
+      "description": "Led a team of interns in developing and fine-tuning image generation models using Stable Diffusion and GANs. Collected, cleaned, and prepared datasets to improve model training efficiency and output quality. Applied prompt engineering techniques to enhance the accuracy of generated images. Gained hands-on experience managing large-scale models on Hugging Face and version control using Git/GitHub."
     }
   ],
   "projects": [
     {
       "Name": "ASL Detection",
       "description": "Developed a system that leverages Convolution Neural Network to interpret America sign Language",
-      "Technologies_used": [
-        "Convolution Neural Network"
-      ]
+      "Technologies_used": []
     },
     {
       "Name": "Waste Management System",
       "description": "Designed smart bins for waste segregation and future prediction using time series forecasting.",
-      "Technologies_used": [
-        "time series forecasting"
-      ]
+      "Technologies_used": []
     },
     {
       "Name": "Artificial Intelligence for Crisis Management",
       "description": "Developed an end-to-end system which can help quick response team and general public during a natural disaster which utilizes LLMs and RAG architecture.",
-      "Technologies_used": [
-        "LLMs",
-        "RAG architecture"
-      ]
+      "Technologies_used": []
     },
     {
       "Name": "Agri-BOT",
       "description": "Engineered an IoT-enabled rover for vertical farming with automated climate and growth monitoring.",
-      "Technologies_used": [
-        "IoT"
-      ]
+      "Technologies_used": []
     }
   ]
 }
