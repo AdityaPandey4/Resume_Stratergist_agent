@@ -5,7 +5,8 @@ from crewai import Agent, Task, Crew, Process, LLM
 from crewai_tools import (FileReadTool,
                             PDFSearchTool,
                             ScrapeWebsiteTool,
-                            SerperDevTool
+                            SerperDevTool,
+                            FileReadTool
         )
 from pydantic import BaseModel, Field
 from typing import List
@@ -23,8 +24,8 @@ os.environ["GOOGLE_API_KEY"] = "AIzaSyBZkUWjOzIYlQbDPvgjyDzmsadHKqt1HhQ"
 # --- LLM Setup ---
 # Using gemini-1.5-flash is a great choice for speed and capability.
 llm = LLM(
-    # model="gemini/gemini-1.5-flash"
-    model="gemini/gemini-2.0-flash"
+    model="gemini/gemini-1.5-flash"
+    # model="gemini/gemini-2.0-pro"
 )
 
 
@@ -49,6 +50,7 @@ pdf_search_tool = PDFSearchTool(
 
 search_tool = SerperDevTool()
 scrape_website_tool = ScrapeWebsiteTool()
+file_read_tool = FileReadTool()
 
 # --- Pydantic Classes ---
 # These are well-defined and a great way to ensure structured output.
@@ -77,7 +79,20 @@ class Job_researcher_json(BaseModel):
 class Resume_profiler_json(BaseModel):
     key_skills : list[str]
     missing_keywords : list[str]
-    Actionable_Suggestions : list[str]
+    Actionable_Suggestions : list[str] 
+
+# --- Add these to your Pydantic Classes section ---
+
+class AuditItem(BaseModel):
+    suggestion: str = Field(description="The specific suggestion made by the Resume Profiler.")
+    implementation_evidence: str = Field(description="The concrete evidence or quote from the new resume that shows how the suggestion was implemented.")
+    verdict: str = Field(description="A verdict on the implementation, e.g., 'SUCCESSFUL', 'PARTIALLY IMPLEMENTED', or 'NOT IMPLEMENTED'.")
+
+class Resume_Audit_Report_json(BaseModel):
+    audit_summary: str = Field(description="A brief, one-sentence summary of the audit's findings.")
+    audit_results: List[AuditItem] = Field(description="A detailed list of comparisons, validating each suggestion against the final resume.")
+
+
 
 # --- Agent Definitions ---
 
@@ -167,21 +182,28 @@ Resume_builder = Agent(
 
 )
 
-#Report Agent 
-Report_agent = Agent(
-    role = "Report Writing Expert",
-    goal = "Provide a Side by side comparison report of what were the Actionable suggestions by Resume_Profiler and the Changes in the resume that Reflects those changes implemented in a table",
-    backstory = (
-        "You are an expert in generating detailed and well structured reports while detailing out comparisons in a table"
-        "Carefully analyse the information provided by the Resume_profiler agent specifically 'Actionable_suggestion' and"
-        "and the result of the Resume_builder agent which created a New_resume for the user"
-        "compare the contents of the New_resume with the Actionable Suggestions and provide a detailed summary how the actionable suggestions is "
-        "successfully implemented in the New_resume"
-    ),
-    llm = llm,
-    max_iter = 3,
-    max_rpm = 3
+# --- Add this to your Agent Definitions section ---
 
+
+
+Resume_Audit_Analyst = Agent(
+    role="Meticulous Resume Audit Analyst",
+    goal="Rigorously verify that the final resume draft successfully incorporates all suggestions made by the Resume Profiler.",
+    backstory=(
+        "You are the final checkpoint in the resume enhancement pipeline. Your attention to detail is legendary. "
+        "You function like a QA engineer, systematically taking each suggestion from the profiler's report and checking for its presence and proper implementation in the final resume markdown file. "
+        "Your job is to provide a clear, structured, and objective report on how well the Resume Builder agent followed its instructions."
+    ),
+    tools=[file_read_tool], # Can read the files directly if needed
+    llm=llm,
+    max_iter=3,
+    verbose=True
+)
+Markdown_Formatter = Agent(
+    role="Markdown Formatting Specialist",
+    goal="Convert structured JSON data into a beautiful, human-readable Markdown table.",
+    backstory="You are a formatting expert. You take clean JSON data and transform it into perfectly structured Markdown tables. You do not analyze or change the content, you only format it.",
+    llm=llm
 )
 
 
@@ -280,38 +302,44 @@ Resume_builder_task = Task(
     output_file='New_resume.md'
 )
 
-Report_agent_task = Task(
-    description=(
-        "Your main task is to create a detailed audit report in a perfect markdown table. You will compare the 'Actionable_Suggestions' from the `Resume_profiler` against the final `New_resume.md`.\n\n"
-        "**Process:**\n"
-        "1. For each suggestion from the profiler, find concrete evidence of its implementation in the new resume.\n"
-        "2. Construct a Markdown table with your findings.\n\n"
-        
-        "**CRITICAL FORMATTING RULES:**\n"
-        "1. The final output MUST be ONLY a Markdown table. Do NOT add any introductory text, concluding summaries, or explanations before or after the table.\n"
-        "2. Do NOT wrap the table in markdown code fences (i.e., no ```markdown ... ```).\n"
-        "3. Follow the example syntax below with extreme precision, including the pipes `|` and header separators `|---|`.\n\n"
+# --- Add this to your Task Definitions section ---
 
-        "**EXAMPLE OF PERFECT SYNTAX:**\n\n"
-        "| Profiler Suggestion | How it was implemented - Evidence |\n"
-        "|---------------------|-----------------------------------|\n"
-        "| This is the first suggestion from the profiler. | **SUCCESSFUL:** The new resume implemented this by adding a 'New Section' and including the keywords 'X' and 'Y' in the summary. |\n"
-        "| This is the second suggestion from the profiler. | **SUCCESSFUL:** This suggestion was addressed in the 'Experience' section where the bullet point was rewritten to include quantifiable metrics like 'improved by 25%'. |\n"
+resume_audit_task = Task(
+    description=(
+        "You must conduct a final audit of the resume-building process. "
+        "Your task is to compare the 'Actionable_Suggestions' from the `Resume_profiler`'s output against the final `New_resume.md` generated by the `Resume_builder`.\n\n"
+        "Follow this process:\n"
+        "1. Go through each suggestion in the `Actionable_Suggestions` list from the profiler's report.\n"
+        "2. For each suggestion, meticulously scan the final `New_resume.md` to find evidence of its implementation.\n"
+        "3. Create a structured JSON report based on your findings. For each suggestion, you must provide the original suggestion, the evidence you found in the resume, and a clear verdict.\n\n"
+        "Note: If the builder implemented a suggestion by adding a placeholder like `[Add details here]`, this counts as a 'SUCCESSFUL' implementation, as the agent correctly identified the need for user input. Your goal is to verify the agent's work, not the user's."
     ),
     expected_output=(
-        "A single, clean markdown file containing ONLY a perfectly formatted Markdown table. "
-        "The table must have two columns: 'Profiler Suggestion' and 'How it was implemented - Evidence'. "
-        "The file must not contain any other text, titles, or code fences."
+        "A JSON object that strictly follows the `Resume_Audit_Report_json` schema. "
+        "It must contain a list of `AuditItem` objects, where each object validates one suggestion against the final resume, providing the suggestion, evidence, and a verdict."
     ),
-    agent=Report_agent,
-    context=[Resume_profiler_task, Resume_builder_task],
+    agent=Resume_Audit_Analyst,
+    context=[Resume_profiler_task, Resume_builder_task], # Needs output from both tasks
+    output_json=Resume_Audit_Report_json,
+    output_file='resume_audit_report.json'
+)
+
+markdown_formatting_task = Task(
+    description=(
+        "You will be given a JSON object containing a list of audit results. "
+        "Your only job is to convert this data into a perfect 3-column Markdown table. "
+        "The columns should be 'Profiler Suggestion', 'Implementation & Evidence', and 'Verdict'. "
+        "Do not add any text before or after the table."
+    ),
+    expected_output="A single markdown file containing only a flawless, 3-column Markdown table representing the provided JSON data.",
+    agent=Markdown_Formatter,
+    context=[resume_audit_task], # Takes input from the JSON-producing task
     output_file="Review.md"
 )
 
-# --- Crew Definition ---
 job_search_crew = Crew(
-    agents=[Resume_analyst, Job_researcher, Resume_profiler, Resume_builder, Report_agent],
-    tasks=[Resume_analyst_Task, Job_researcher_Task, Resume_profiler_task,Resume_builder_task, Report_agent_task],
+    agents=[Resume_analyst, Job_researcher, Resume_profiler, Resume_builder, Resume_Audit_Analyst,Markdown_Formatter],
+    tasks=[Resume_analyst_Task, Job_researcher_Task, Resume_profiler_task,Resume_builder_task, resume_audit_task, markdown_formatting_task],
     process=Process.sequential,
     verbose=True
 )

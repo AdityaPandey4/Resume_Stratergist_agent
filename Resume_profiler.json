@@ -1,23 +1,40 @@
 {
   "key_skills": [
+    "Machine Learning",
+    "Generative AI",
     "Large Language Models",
-    "Retrieval Augmented Generation (RAG)",
     "Python"
   ],
   "missing_keywords": [
-    "GPT",
-    "Gemini",
-    "Vector DB",
-    "Lang Chain",
-    "LLAMA Index",
-    "GenAI"
+    "MLOps",
+    "AWS",
+    "SageMaker",
+    "Bedrock",
+    "Docker",
+    "CI/CD",
+    "Terraform",
+    "CloudFormation",
+    "model monitoring",
+    "explainability techniques",
+    "PyTorch",
+    "TensorFlow",
+    "LangChain",
+    "Hugging Face",
+    "Git",
+    "GitHub",
+    "Microservices",
+    "Data Structures",
+    "Apache Kafka",
+    "Software Development",
+    "React",
+    "Django"
   ],
   "Actionable_Suggestions": [
-    "In the 'Deep Learning Intern' role at Wezenite Technologies Private Limited, explicitly mention your experience with specific LLMs like GPT or Gemini, if applicable. Even if you haven't directly worked with these specific models, highlight your experience with similar models and your ability to quickly learn and adapt to new LLMs.",
-    "In the 'Deep Learning Intern' role description at Wezenite Technologies Private Limited, emphasize the implementation of RAG architecture to improve contextual relevance. Quantify the improvements achieved through RAG implementation, if possible.",
-    "Although your resume mentions 'AI Agentic Workflow', it's beneficial to add 'GenAI' to your skills section to directly align with the job posting. This would ensure that it is not missed by the ATS.",
-    "In the 'Artificial Intelligence for Crisis Management' project description, explicitly mention the specific LLMs and RAG framework you utilized. If you used something very similar to Langchain or LlamaIndex, phrase it to highlight the comparable functionalities and your experience with those. For example: 'Developed an end-to-end system which can help quick response team and general public during a natural disaster which utilizes LLMs (similar to OpenAI models) and a RAG architecture (comparable to Langchain for information retrieval).'",
-    "Even though you may not have direct experience with Vector DB, you can still enhance your resume. Include a brief mention of your familiarity with vector embeddings and similarity searches in the context of RAG or LLM applications. For example, within your project descriptions or skills section, add a phrase like: 'Experience with vector embeddings and similarity search techniques for enhancing information retrieval in RAG systems'.",
-    "In your skills section, consider adding a separate entry for 'Prompt Engineering', as it is a valuable skill for optimizing LLM performance."
+    "**Strengthen MLOps experience:**  While the resume shows experience with large language models and generative AI, explicitly mention any involvement in building or managing machine learning pipelines.  Quantify accomplishments whenever possible (e.g., 'Managed pipelines resulting in a 15% reduction in model deployment time'). If no direct MLOps experience exists, highlight projects where similar skills were applied (e.g., project management, deployment, version control).",
+    "**Highlight AWS skills:** Add a section to the resume showcasing familiarity with relevant AWS services. Even if experience is limited, mention specific services used in personal projects or coursework (e.g., 'Used Amazon S3 for data storage in personal projects').",
+    "**Integrate missing keywords:** Naturally incorporate keywords like 'MLOps', 'CI/CD', 'Docker', 'SageMaker', 'Bedrock' throughout the resume, especially in project descriptions and the experience section.  For example, rephrase project descriptions to include phrases such as  'Implemented CI/CD pipelines using GitLab/Jenkins for efficient model deployment' or 'Leveraged Docker for containerization of the machine learning models.'",
+    "**Showcase relevant projects:**  Expand project descriptions to emphasize aspects relevant to the job description. For instance, the 'Artificial Intelligence for Crisis Management' project can be enhanced by mentioning the technologies used for model deployment and monitoring. Add details on the technologies used in all the projects. ",
+    "**Quantify achievements:** Use numbers to demonstrate the impact of your work. For example, instead of 'Developed a system...', write 'Developed a system that improved accuracy by 10%...' or 'Reduced processing time by 20%'.",
+    "**Tailor the resume:** Rewrite the resume to focus on skills and experiences directly relevant to the MLOps Engineer role. The current resume focuses more on the development of AI models than the deployment and maintenance of the models."
   ]
 }
