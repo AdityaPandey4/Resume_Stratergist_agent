@@ -1,0 +1,11 @@
+# backend/requirements.txt
+fastapi
+uvicorn[standard]
+python-dotenv
+crewai
+crewai-tools
+python-multipart
+google-generativeai
+langchain_huggingface
+sentence-transformers
+# Add any other libraries your crew needs, like a specific langchain-google-genai version if you use it

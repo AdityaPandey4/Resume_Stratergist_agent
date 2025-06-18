@@ -1,0 +1,51 @@
+# =================================================================
+# --- IDE / Editor / OS Specific ---
+# These rules apply to the whole project
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+
+# =================================================================
+# --- Python Specific ---
+
+# Ignore all virtual environments, no matter where they are.
+# This is a safety net in case someone creates one anyway.
+**/venv/
+**/.venv/
+
+# Ignore Python cache files
+**/__pycache__/
+*.pyc
+
+
+# =================================================================
+# --- Application Specific (Secrets & Temporary Files) ---
+
+# Ignore ALL .env files anywhere in the project. CRITICAL for security.
+**/.env
+**/.env.*
+
+
+
+# Ignore any log, json, or md files that might be accidentally
+# created in the root of the backend or frontend directories.
+# This prevents clutter from test runs.
+# IMPORTANT: If your frontend uses a README.md you want to keep,
+# you might make this more specific, e.g., "backend/*.md"
+# For now, this is a safe default.
+*.log
+
+
+
+# =================================================================
+# --- Docker & Build Artifacts ---
+
+# Ignore Docker build context archives
+docker-compose-build.tar.gz
+
+# Standard distribution/packaging files (good practice)
+build/
+dist/
+*.egg-info/
