@@ -45,7 +45,6 @@ This structured, multi-agent approach ensures a high-quality, detailed output th
 The application is designed as a modern, scalable client-server system, fully containerized with Docker for consistency and ease of deployment.
 
 ![Architecture Diagram](httpsd://i.imgur.com/your-architecture-diagram.png)
-*(Recommendation: Use a tool like diagrams.net or Excalidraw to create a simple architecture diagram and link it here.)*
 
 ### Backend (FastAPI)
 
