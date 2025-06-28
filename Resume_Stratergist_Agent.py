@@ -17,15 +17,18 @@ from typing import List
 # For this example, we'll continue with os.getenv
 # Make sure your actual keys are set as environment variables before running the script.
 os.environ["SERPER_API_KEY"] = "9a225a968bf32a2c6fd80f2d5472ded92286178c"
-os.environ["GEMINI_API_KEY"] = "AIzaSyDTxEpqy79zwgOkQ0nYBg5cyGkLxeIfbPg"
+os.environ["GEMINI_API_KEY"] = "AIzaSyBZPtti69QVeXKJJ4qysG8hGpfD1_F6-YQ"
 os.environ["GOOGLE_API_KEY"] = "AIzaSyBZkUWjOzIYlQbDPvgjyDzmsadHKqt1HhQ"
-
+os.environ['OPENROUTER_API_KEY'] = "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-YQ"
 
 # --- LLM Setup ---
 # Using gemini-1.5-flash is a great choice for speed and capability.
 llm = LLM(
-    model="gemini/gemini-1.5-flash"
-    # model="gemini/gemini-2.0-pro"
+    # model="gemini/gemini-1.5-flash"
+    model="gemini/gemini-2.0-flash"
+    # model="mistralai/mistral-small-3.2-24b-instruct:free",
+    # base_url="https://openrouter.ai/api/v1",
+    # api_key= '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'
 )
 
 

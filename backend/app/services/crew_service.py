@@ -10,7 +10,7 @@ from pydantic import BaseModel, Field
 from typing import List
 
 
-def run_resume_crew(resume_path : str, city : str)->str :
+def run_resume_crew(resume_path : str, city : str, result_dir:str):
 # --- API Keys ---
     from dotenv import load_dotenv
     load_dotenv()
@@ -22,7 +22,8 @@ def run_resume_crew(resume_path : str, city : str)->str :
     # Using gemini-1.5-flash is a great choice for speed and capability.
     llm = LLM(
         model="gemini/gemini-1.5-flash"
-        # model="gemini/gemini-2.0-pro"
+        # model="gemini/gemini-2.0-flash"
+        # model = "gemini/gemini-2.0-flash-lite"
     )
 
 
@@ -78,8 +79,6 @@ def run_resume_crew(resume_path : str, city : str)->str :
         missing_keywords : list[str]
         Actionable_Suggestions : list[str] 
 
-    # --- Add these to your Pydantic Classes section ---
-
     class AuditItem(BaseModel):
         suggestion: str = Field(description="The specific suggestion made by the Resume Profiler.")
         implementation_evidence: str = Field(description="The concrete evidence or quote from the new resume that shows how the suggestion was implemented.")
@@ -107,7 +106,6 @@ def run_resume_crew(resume_path : str, city : str)->str :
             "to ensure accuracy and completeness. You understand that your output is critical for the next agent's success."
         ),
         tools=[pdf_search_tool],
-        # --- CHANGE 1: Increased max_iter to prevent hallucinations and allow self-correction ---
         max_iter=5,
         max_rpm =3,
         llm=llm,
@@ -125,9 +123,8 @@ def run_resume_crew(resume_path : str, city : str)->str :
             "After finding a promising link, you diligently scrape it to extract the job description. If a link leads to a list or is not a valid job post, you discard it and try the next one."
         ),
         tools=[search_tool, scrape_website_tool],
-        # --- CHANGE 2: Increased max_iter and max_rpm to allow for a search-validate-scrape loop ---
         max_iter=5,
-        max_rpm=5, # Allow more calls per minute for the search/scrape loop
+        max_rpm=2, # Allow more calls per minute for the search/scrape loop
         llm=llm,
         verbose=True
     )
@@ -171,17 +168,16 @@ def run_resume_crew(resume_path : str, city : str)->str :
             "To get more information to populate the resume use pdf_search_tool and pass two arguments"
             "the two arguments are {file_path} for the file path of the resume "
             "and your query for the 'query' arguement"
+            
+
+
         ),
         llm = llm,
         max_iter = 5,
-        max_rpm = 3,
+        max_rpm = 2,
         tools = [pdf_search_tool]
 
     )
-
-    # --- Add this to your Agent Definitions section ---
-
-
 
     Resume_Audit_Analyst = Agent(
         role="Meticulous Resume Audit Analyst",
@@ -200,7 +196,8 @@ def run_resume_crew(resume_path : str, city : str)->str :
         role="Markdown Formatting Specialist",
         goal="Convert structured JSON data into a beautiful, human-readable Markdown table.",
         backstory="You are a formatting expert. You take clean JSON data and transform it into perfectly structured Markdown tables. You do not analyze or change the content, you only format it.",
-        llm=llm
+        llm=llm,
+        max_rpm = 3
     )
 
 
@@ -209,7 +206,6 @@ def run_resume_crew(resume_path : str, city : str)->str :
     Resume_analyst_Task = Task(
         description=(
             "Analyze the user's resume located at '{file_path}'. "
-            # --- CHANGE 3: Add forceful, non-negotiable instructions ---
             "Your mission is to act as a data extractor ONLY. **You are strictly forbidden from inventing, hallucinating, or using any prior knowledge.** "
             "Your ONLY source of information is the document provided at '{file_path}'.\n\n"
             "You MUST use the `pdf_search_tool` to find every piece of information. "
@@ -229,13 +225,13 @@ def run_resume_crew(resume_path : str, city : str)->str :
         expected_output="A JSON file containing the candidate's 'name', 'skills', 'experience', and 'projects' extracted directly from the resume.",
         agent=Resume_analyst,
         output_json=Resume_analyst_json,
-        output_file="Resume_analyst.json"
+        output_file=os.path.join(result_dir,"Resume_analyst.json")
     )
 
     Job_researcher_Task = Task(
         description=(
             "Using the skills and experience from the Resume Analyst's output and the user's preferred city of '{city}', find one highly relevant job posting. "
-            # --- CHANGE 4: Guiding the agent to use better search strategies ---
+            # --- Guiding the agent to use better search strategies ---
             "1. Formulate a precise search query. Use operators like 'site:linkedin.com/jobs/view/' or 'site:greenhouse.io' to find direct job postings. For example: 'Senior Python Developer jobs in {city} site:linkedin.com/jobs/view/'.\n"
             "2. Use the `search_tool` with this query to get a list of links.\n"
             "3. From the search results, select the most promising URL that appears to be a direct job posting, not a search list.\n"
@@ -249,7 +245,7 @@ def run_resume_crew(resume_path : str, city : str)->str :
         ),
         agent=Job_researcher,
         output_json=Job_researcher_json,
-        output_file="Job_researcher.json",
+        output_file=os.path.join(result_dir,"Job_researcher.json"),
         context=[Resume_analyst_Task]
     )
 
@@ -269,7 +265,7 @@ def run_resume_crew(resume_path : str, city : str)->str :
         agent = Resume_profiler,
         context =[Resume_analyst_Task, Job_researcher_Task],
         output_json = Resume_profiler_json,
-        output_file = 'Resume_profiler.json'
+        output_file = os.path.join(result_dir,'Resume_profiler.json')
 
     )
     Resume_builder_task = Task(
@@ -286,7 +282,9 @@ def run_resume_crew(resume_path : str, city : str)->str :
             "3. **Enhance the 'Skills' section.** Ensure the 'key_skills' identified by the profiler are prominently featured.\n"
             "4. **Craft a new, powerful 'Summary' section.** This summary should be a concise pitch directly targeting the job, using keywords from the job description and highlighting the user's most relevant qualifications.\n"
             "5. **Preserve all original facts.** You must not change company names, dates, or the core truth of the user's work. You are only enhancing the *description* of that work.\n\n"
-            "The final output must be a complete, professional resume in Markdown format, filled with detailed, rewritten descriptions. It should not be a template but a ready-to-use document."
+            "The final output must be a complete, professional resume in Markdown format, filled with detailed, rewritten descriptions. It should not be a template but a ready-to-use document, with NO code Fence (eg, ```markdown...``` or ``` ``` etc)"
+            
+            
         ),
         expected_output=(
             "A complete, professionally formatted, and fully detailed resume in a single markdown file. "
@@ -294,9 +292,9 @@ def run_resume_crew(resume_path : str, city : str)->str :
             "It must include fully populated 'Experience' and 'Projects' sections with detailed, rewritten bullet points."
         ),
         agent=Resume_builder,
-        # --- CHANGE: Make sure builder has access to all prior context ---
+        # --- Make sure builder has access to all prior context ---
         context=[Resume_analyst_Task, Job_researcher_Task, Resume_profiler_task],
-        output_file='New_resume.md'
+        output_file=os.path.join(result_dir,'New_resume.md')
     )
 
     # --- Add this to your Task Definitions section ---
@@ -318,7 +316,7 @@ def run_resume_crew(resume_path : str, city : str)->str :
         agent=Resume_Audit_Analyst,
         context=[Resume_profiler_task, Resume_builder_task], # Needs output from both tasks
         output_json=Resume_Audit_Report_json,
-        output_file='resume_audit_report.json'
+        output_file=os.path.join(result_dir,'resume_audit_report.json')
     )
 
     markdown_formatting_task = Task(
@@ -328,10 +326,10 @@ def run_resume_crew(resume_path : str, city : str)->str :
             "The columns should be 'Profiler Suggestion', 'Implementation & Evidence', and 'Verdict'. "
             "Do not add any text before or after the table."
         ),
-        expected_output="A single markdown file containing only a flawless, 3-column Markdown table representing the provided JSON data.",
+        expected_output="A single markdown file containing only a flawless, 3-column Markdown table representing the provided JSON data",
         agent=Markdown_Formatter,
         context=[resume_audit_task], # Takes input from the JSON-producing task
-        output_file="Review.md"
+        output_file=os.path.join(result_dir,"Review.md")
     )
 
     job_search_crew = Crew(
@@ -349,5 +347,5 @@ def run_resume_crew(resume_path : str, city : str)->str :
     print("## Starting the Job Search Crew...")
     results = job_search_crew.kickoff(inputs=inputs)
     print("\n## Crew work finished.")
-    final_resume_filename = "New_resume.md"
-    return final_resume_filename
+    
+    

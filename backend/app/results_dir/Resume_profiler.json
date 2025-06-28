@@ -1,0 +1,33 @@
+{
+  "key_skills": [
+    "AI",
+    "Deep Learning",
+    "Machine Learning",
+    "Large Language Models",
+    "Python"
+  ],
+  "missing_keywords": [
+    "PyTorch",
+    "Object-Oriented Programming",
+    "Research",
+    "Team Leadership",
+    "Mentoring",
+    "Publications",
+    "Deep Learning Frameworks",
+    "Predictive Machine Learning Models",
+    "Journal Publications",
+    "Conference Presentations"
+  ],
+  "Actionable_Suggestions": [
+    "**Highlight PyTorch Proficiency:**  While the resume showcases experience with deep learning, explicitly mentioning PyTorch expertise is crucial. Add a section on 'Technical Skills' and list PyTorch prominently. If you used PyTorch in any projects, mention it explicitly in the project description.  For example:  \"Developed an AI system using PyTorch and LLMs...\"",
+    "**Showcase OOP Skills:** Integrate examples demonstrating your use of Object-Oriented Programming principles within your project descriptions.  Use phrases like \"designed a modular system using OOP principles\" or \"developed scalable AI solutions using OOP design patterns.\" ",
+    "**Emphasize Research Experience:** Quantify your research contributions. For example, instead of simply stating experience with LLMs, describe specific research tasks, methodologies employed (e.g., experimental design, data analysis techniques), and results achieved.  Even if your projects were not formally published, you can mention your contributions and processes to give it a research-like feel. ",
+    "**Demonstrate Team Leadership and Mentoring:** If you have experience mentoring junior team members, or leading projects involving collaboration, highlight this explicitly in your experience descriptions.  Use action verbs such as \"led,\" \"mentored,\" \"guided,\" and \"collaborated.\" ",
+    "**Highlight Publications and Presentations (if any):**  If you have any research papers published or conference presentations, list them under a separate 'Publications' section. If not, reframe project descriptions to highlight aspects that can be considered research, and mention them using terminology like methodology, analysis, evaluation, and results. ",
+    "**Quantify Achievements:** Add quantifiable results to your project descriptions to demonstrate impact.  Use metrics such as performance improvements, efficiency gains, or cost reductions. For example, \"Improved model accuracy by 15% using a novel approach.\" ",
+    "**Tailor Language to Job Description:** Incorporate keywords like \"predictive machine learning models\" and \"deep learning frameworks\" throughout the resume to align closely with the job posting's requirements. ",
+    "**Add a Summary/Objective:** Include a brief professional summary highlighting your research focus in LLMs and your goal of contributing to a research-focused role. This would immediately grab the recruiter's attention. ",
+    "**Expand Project Descriptions:**  The provided project descriptions are concise.  Expand them to provide more detail, highlighting the technical challenges, solutions implemented, and outcomes achieved.  Use specific technologies where possible.  For example, specifying the version of Python or specific libraries used.  This would also help you incorporate missing keywords organically.",
+    "**Refine Resume Structure:** Ensure a clean, easy-to-read format with clear sections for skills, experience, projects, and education, improving readability and making it more appealing to recruiters."
+  ]
+}

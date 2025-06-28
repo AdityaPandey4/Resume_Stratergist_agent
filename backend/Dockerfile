@@ -5,10 +5,12 @@ ENV PYTHONBUFFERCODE=1
 
 WORKDIR /app
 COPY requirements.txt . 
-ENV HF_HOME=/app/huggingface_cache
+
 
 # RUN pip install --upgrade pip setuptools
+
 RUN pip install --no-cache-dir -r requirements.txt
+
 
 COPY ./app /app
 
