@@ -5,8 +5,8 @@ An end-to-end agentic workflow powered by **CrewAI** that takes a user's resume 
 
 ## 🚀 Live Demo
 
-![Demo GIF of the Application](httpsd://i.imgur.com/your-demo-gif.gif)
-*(Recommendation: Record a short GIF of your application in action and upload it to a site like Imgur to embed it here. It makes a huge difference!)*
+![Demo GIF of the Application](demo/Resume_crew.gif)
+*Note : I tried hosting this application on Reder(backend) and streamlit community(frontend),but due to the limitation of Render Free Tier (low CPU) it's not possible to host it as this application creates embeddings using CPU, i will be glad to hear any suggestions regarding hosting and this will help me alot to showcase the project in real time.*
 
 ---
 
