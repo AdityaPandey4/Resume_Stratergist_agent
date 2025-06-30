@@ -44,7 +44,8 @@ This structured, multi-agent approach ensures a high-quality, detailed output th
 
 The application is designed as a modern, scalable client-server system, fully containerized with Docker for consistency and ease of deployment.
 
-![Architecture Diagram](httpsd://i.imgur.com/your-architecture-diagram.png)
+![Resume_Stratergist_Agent drawio](https://github.com/user-attachments/assets/b41d0143-1dfb-4a3b-8617-5263a1ccdb9e)
+
 
 ### Backend (FastAPI)
 
